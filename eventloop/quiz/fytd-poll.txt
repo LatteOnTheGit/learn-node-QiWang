@@ -1,1 +1,8 @@
 - In eventloop/poll.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+
+foo
+done
+then console log of callback func
+
+because someAsyncOperation() has some async ops, so there is one and only one io callback event, 
+after main thread was executed callback being executed.

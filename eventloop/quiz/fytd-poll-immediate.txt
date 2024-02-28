@@ -1,2 +1,14 @@
 - Explain the order of execution in terms of the event loop for eventloop/immediate.js.
 - Will the order of execution change if timeout is changed to 0? Why or why not?
+
+whole thing is a callback, 
+execution order is
+file
+I was scheduled to run immediately
+5ms have passed since I was scheduled
+
+read file is in poll, '`${delay}ms have passed since I was scheduled' is in the timers
+and 'I was scheduled to run immediately' is in pending.
+after main thread end, pending process get execute, after timeout is end, delayed process get execute.
+
+changed timeout will not change, because setImmediate get executed immediately in the queue
